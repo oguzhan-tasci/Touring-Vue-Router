@@ -1,13 +1,19 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory
+} from 'vue-router'
 import EventList from '../views/EventList.vue'
 import EventDetails from '../views/EventDetails.vue'
 import About from '../views/About.vue'
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'EventList',
-    component: EventList
+    component: EventList,
+    // Parse & set the current page from the route using Function Mode
+    props: route => ({
+      page: parseInt(route.query.page) || 1
+    }) // if page exists , parse the string to an integer, otherwise return 1
   },
   {
     path: '/event/:id',
